@@ -1,24 +1,30 @@
-# Salesforce
+# Salesforce Contact
 
-TODO: Write a gem description
+A simplest way to integrate your Rails App with Salesforce Contacts.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'salesforce'
+    gem 'salesforce', github: 'fbazzarella/salesforce_sample_gem'
 
 And then execute:
 
     $ bundle
+    
+## Configuration
 
-Or install it yourself as:
-
-    $ gem install salesforce
+Before you can use this Gem, your app should be integrated with Salesforce through OAuth.
 
 ## Usage
 
-TODO: Write usage instructions here
+You just should create a new instance of `Salesforce::Contact` and call `create` method with attributes you want.
+
+    Salesforce::Contact.new(credentials).create(attributes)
+
+* `credentials` should be an Array that 1st element is the `token` and the 2nd is the `instance_url`. Both returned by OAuth on authentication request.
+
+* `attributes` should be a Hash with the ActiveRecord attributes you want to repass (eg. `{'LastName' => 'Doe'}`). Note: fields that don't exists on your Salesforce Contact will be ignored.
 
 ## Contributing
 
