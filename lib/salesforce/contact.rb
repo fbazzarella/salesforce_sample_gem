@@ -10,5 +10,15 @@ module Salesforce
 
       @@contact = client.materialize('Contact')
     end
+
+    def create(attributes)
+      @@contact.create(sanitized_attributes(attributes)).persisted?
+    end
+
+    private
+
+    def sanitized_attributes(attributes)
+      attributes.select {|a| @@contact.attributes.include?(a)}
+    end
   end
 end
